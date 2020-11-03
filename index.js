@@ -1,10 +1,11 @@
 const inquirer = require('inquirer')
 const axios = require('axios')
 const fs = require('fs');
+const util = require('util')
 
 async function main() {
 
-const username = await inquirer.prompt([
+const questions = [
     {
         type: 'input',
         message: 'Yo, whats your github username?',
@@ -44,22 +45,64 @@ const username = await inquirer.prompt([
     }
 
 
-])
+]
+
+const rep = await inquirer.prompt(questions)
+console.log(rep)
+
+var readme=
+`# ${rep.project}
+
+
+###### ${rep.license}
+
+
+## Description
+${rep.description}
+
+
+## Usage
+${rep.usage}
+
+
+## Contributing 
+${rep.contrib}
+
+
+## Testing
+${rep.test}
+
+
+`
 
 
 
-const get = await axios.get("http://api.github.com/users/" + username.username)
+const get = await axios.get("http://api.github.com/users/" + rep.username)
 .then(function (response) {
     // console.log(response)
     console.log("Name: " + response.data.name)
-    console.log("Email: " + response.data.email)
+    
     console.log("Public Repos: " + response.data.public_repos)
     
     
 })
 .catch(function(error) {
     console.log(error)
+
 })
+function writeread() {
+ fs.writeFileSync('readme.md', readme, err => {
+        if (err) {
+          return console.log(err);
+        }
+      
+        console.log("Success")
+    });
+}
+
+ writeread()
+
+
 
 }
 
