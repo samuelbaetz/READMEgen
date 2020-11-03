@@ -2,6 +2,7 @@ const inquirer = require('inquirer')
 const axios = require('axios')
 const fs = require('fs');
 const util = require('util')
+const chalk = require('chalk');
 
 async function main() {
 
@@ -30,6 +31,11 @@ const questions = [
     },
     {
         type: 'input',
+        message: 'What dependencies does your project have?',
+        name: 'depend'
+    },
+    {
+        type: 'input',
         message: 'Tell me how a user would use your application',
         name: 'usage'
     },
@@ -48,8 +54,13 @@ const questions = [
 ]
 
 const rep = await inquirer.prompt(questions)
-console.log(rep)
-
+console.log(chalk.green("Project: " + rep.project))
+console.log(chalk.green("License: " + rep.license))
+console.log(chalk.green("Description: " + rep.description))
+console.log(chalk.green("Usage: " + rep.usage))
+console.log(chalk.green("Contribute: " + rep.contrib))
+console.log(chalk.green("Testing: " + rep.test))
+console.log(chalk.green("Dependencies: " + rep.depend))
 var readme=
 `# ${rep.project}
 
@@ -59,6 +70,9 @@ var readme=
 
 ## Description
 ${rep.description}
+
+## Dependancies
+${rep.depend}
 
 
 ## Usage
@@ -80,7 +94,7 @@ ${rep.test}
 const get = await axios.get("http://api.github.com/users/" + rep.username)
 .then(function (response) {
     // console.log(response)
-    console.log("Name: " + response.data.name)
+    console.log("Thanks! " + response.data.name)
     
     console.log("Public Repos: " + response.data.public_repos)
     
@@ -91,12 +105,12 @@ const get = await axios.get("http://api.github.com/users/" + rep.username)
 
 })
 function writeread() {
- fs.writeFileSync('readme.md', readme, err => {
+ fs.writeFileSync('README.md', readme, err => {
         if (err) {
           return console.log(err);
         }
       
-        console.log("Success")
+        console.log("Sick dude, your README had been generated")
     });
 }
 

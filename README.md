@@ -5,7 +5,10 @@
 
 
 ## Description
-Using this script you will be able to create a README file for your project. 
+Using this script you will be able to create a README file for your project.
+
+## Dependancies
+Axios, Inquirer, Chalk
 
 
 ## Usage
@@ -17,6 +20,6 @@ Clone the project and submit a pull request.
 
 
 ## Testing
-
+Using Jest
 
 
