@@ -21,7 +21,7 @@ const questions = [
     {
         type: 'list',
         message: 'Select a license for your Project',
-        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'None'],
+        choices: ['GNU_AGPLv3', 'GNU_GPLv3', 'GNU_LGPLv3', 'Mozilla_Public_License_2.0', 'Apache_License_2.0', 'MIT_License', 'None'],
         name: 'license'
     },
     {
@@ -64,8 +64,15 @@ console.log(chalk.green("Dependencies: " + rep.depend))
 var readme=
 `# ${rep.project}
 
+# Table of Contents
+1. [Description](#description)
+2. [Dependancies](#dependancies)
+3. [Usage](#usage)
+4. [Contributing](#contributing)
+5. [Testing](#testing)
 
-###### ${rep.license}
+
+![License](https://img.shields.io/badge/License-${rep.license}-blue) 
 
 
 ## Description
