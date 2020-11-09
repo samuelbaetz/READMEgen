@@ -61,6 +61,23 @@ console.log(chalk.green("Usage: " + rep.usage))
 console.log(chalk.green("Contribute: " + rep.contrib))
 console.log(chalk.green("Testing: " + rep.test))
 console.log(chalk.green("Dependencies: " + rep.depend))
+
+const get = await axios.get("http://api.github.com/users/" + rep.username)
+.then(function (response) {
+    // console.log(response)
+    console.log("Thanks! " + response.data.name)
+    
+    console.log("Public Repos: " + response.data.public_repos)
+    
+    
+    
+})
+.catch(function(error) {
+    console.log(error)
+
+})
+
+
 var readme=
 `# ${rep.project}
 
@@ -93,24 +110,14 @@ ${rep.contrib}
 ## Testing
 ${rep.test}
 
+## Questions
+Github: ${rep.username}
 
 `
 
 
 
-const get = await axios.get("http://api.github.com/users/" + rep.username)
-.then(function (response) {
-    // console.log(response)
-    console.log("Thanks! " + response.data.name)
-    
-    console.log("Public Repos: " + response.data.public_repos)
-    
-    
-})
-.catch(function(error) {
-    console.log(error)
 
-})
 function writeread() {
  fs.writeFileSync('README.md', readme, err => {
         if (err) {
