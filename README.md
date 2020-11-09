@@ -3,6 +3,7 @@
 
 ###### Mozilla Public License 2.0
 
+![Example](example.gif)
 
 ## Description
 Using this script you will be able to create a README file for your project.
